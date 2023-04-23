@@ -8,6 +8,10 @@
 /* printf.c */
 int _printf(const char *, ...);
 
+/* handler.c */
+int handler(const char *, va_list);
+int handle_format(const char *, va_list, int *);
+
 /* format */
 int etch_string(va_list);
 int etch_char(va_list);
