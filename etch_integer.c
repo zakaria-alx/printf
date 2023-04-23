@@ -47,5 +47,6 @@ int etch_integer(va_list argList)
 	int argLength = 0;
 
 	argsLength = _putint(va_arg(argList, int), argLength);
+
 	return (argsLength);
 }
