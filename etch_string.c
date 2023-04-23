@@ -19,13 +19,14 @@ int etch_string(va_list argList)
 }
 
 /**
- * put_hex_upper - function that prints the hex number.
- * @num: target number.
- * @ptr_score: a pointer to an integer that keeps track of the number
- * of integers printed so far.
- *
- * Return: 1 or 0 if no num found.
- **/
+ * _puthex - Prints a given number in hexadecimal format (uppercase)
+ * @num: The number to be printed
+ * Description: This function takes an integer as
+ * input and prints it in hexadecimal
+ * format using uppercase letters.
+ * Return: 1 if the number was printed successfully,
+ * 0 if no number was provided
+**/
 int _puthex(int num)
 {
 	int ptr_score = 0;
@@ -58,6 +59,12 @@ int _puthex(int num)
 	return (ptr_score);
 }
 
+/**
+ * etch_String - Print incoming string
+ * @argList: String to print
+ * Description: Redirecting incoming string towards buffer
+ * Return: The length of the printed string
+**/
 int etch_String(va_list argList)
 {
 	int idx;
