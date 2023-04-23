@@ -24,6 +24,7 @@ int etch_octal(va_list);
 int etch_rot(va_list);
 int etch_pointer(va_list);
 int etch_reverse(va_list);
+int etch_String(va_list argList);
 
 /* utilities */
 

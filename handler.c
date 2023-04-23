@@ -43,6 +43,7 @@ int handle_format(const char *formatPtr, va_list argList, int *i)
 {
 	int argsLength, j, nFormats;
 	format cases[] = {
+		{'S', etch_String},
 		{'s', etch_string},
 		{'c', etch_char},
 		{'d', etch_integer},
