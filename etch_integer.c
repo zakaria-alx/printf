@@ -44,11 +44,11 @@ int _putint(unsigned int arg, int len)
 int etch_integer(va_list argList)
 {
 	char *buffPtr;
-	int length;
+	int argLength;
 
 	buffPtr = convert_ascii(va_arg(argList, int), 10);
 
-	length = etch((buffPtr != NULL) ? buffPtr : "NULL");
+	argLength = etch((buffPtr != NULL) ? buffPtr : "NULL");
 
-	return (length);
+	return (argLength);
 }
