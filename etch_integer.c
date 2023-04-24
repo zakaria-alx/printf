@@ -48,7 +48,7 @@ int etch_integer(va_list argList)
 
 	ptr_buff = convert_ascii(va_arg(argList, int), 10);
 
-	length = print((ptr_buff != NULL) ? ptr_buff : "NULL");
+	length = etcher((ptr_buff != NULL) ? ptr_buff : "NULL");
 
 	return (length);
 }
