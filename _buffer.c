@@ -9,17 +9,17 @@
 int buffer(char character)
 {
 	static char buff[1024];
-	static int i;
+	static int idx;
 
-	if (character == -1 || i == 1024)
+	if (character == -1 || idx == 1024)
 	{
-		write(1, buff, i);
-		i = 0;
+		write(1, buff, idx);
+		idx = 0;
 	}
 
 	if (character != -1)
 	{
-		buff[i++] = character;
+		buff[idx++] = character;
 	}
 
 	return (1);
