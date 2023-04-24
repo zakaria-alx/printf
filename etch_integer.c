@@ -43,10 +43,12 @@ int _putint(unsigned int arg, int len)
  **/
 int etch_integer(va_list argList)
 {
-	int argsLength;
-	int argLength = 0;
+	char *ptr_buff;
+	int length;
 
-	argsLength = _putint(va_arg(argList, int), argLength);
+	ptr_buff = convert_ascii(va_arg(argList, int), 10);
 
-	return (argsLength);
+	length = print((ptr_buff != NULL) ? ptr_buff : "NULL");
+
+	return (length);
 }
