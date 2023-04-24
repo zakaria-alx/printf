@@ -9,10 +9,10 @@
 int etch_binary(va_list argList)
 {
 	char *buffPtr;
-	int argsLength;
+	int argLength;
 
 	buffPtr = convert_ascii(va_arg(argList, unsigned int), 2);
-	argsLength = etch(buffPtr);
+	argLength = etch(buffPtr);
 
-	return (argsLength);
+	return (argLength);
 }
