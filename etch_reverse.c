@@ -8,15 +8,15 @@
  **/
 int etch_reverse(va_list argList)
 {
-	int pos, argsLength;
+	int pos, argLength;
 	const char *str;
 
 	str = va_arg(argList, const char *);
 
-	argsLength = _strlen(str);
+	argLength = _strlen(str);
 
-	for (pos = argsLength - 1; pos >= 0; pos--)
+	for (pos = argLength - 1; pos >= 0; pos--)
 		_putchar(str[pos]);
 
-	return (argsLength);
+	return (argLength);
 }
