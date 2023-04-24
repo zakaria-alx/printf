@@ -10,7 +10,7 @@
  **/
 char *convert_ascii(long int number, int base)
 {
-	static char *array = "0123456789abcdef";
+	static char *arr = "0123456789abcdef";
 	static char buffer[50];
 	char sign = 0;
 	char *lengthPtr;
@@ -25,7 +25,7 @@ char *convert_ascii(long int number, int base)
 	*lengthPtr = '\0';
 
 	do {
-		*--lengthPtr = array[n % base];
+		*--lengthPtr = arr[n % base];
 		n /= base;
 	} while (n != 0);
 
