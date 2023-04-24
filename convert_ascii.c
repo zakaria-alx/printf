@@ -12,14 +12,14 @@ char *convert_ascii(long int number, int base)
 {
 	static char *arr = "0123456789abcdef";
 	static char buffer[50];
-	char sign = 0;
+	char _sign = 0;
 	char *lengthPtr;
 	unsigned long n = number;
 
 	if (number < 0)
 	{
 		n = -number;
-		sign = '-';
+		_sign = '-';
 	}
 	lengthPtr = &buffer[49];
 	*lengthPtr = '\0';
@@ -29,7 +29,7 @@ char *convert_ascii(long int number, int base)
 		n /= base;
 	} while (n != 0);
 
-	if (sign)
-		*--lengthPtr = sign;
+	if (_sign)
+		*--lengthPtr = _sign;
 	return (lengthPtr);
 }
