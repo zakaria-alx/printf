@@ -24,11 +24,10 @@ char *convert_ascii(long int number, int base)
 	lengthPtr = &buffer[49];
 	*lengthPtr = '\0';
 
-	while (n != 0)
-	{
+	do {
 		*--lengthPtr = array[n % base];
 		n /= base;
-	};
+	} while (n != 0);
 
 	if (sign)
 		*--lengthPtr = sign;
