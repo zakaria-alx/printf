@@ -9,11 +9,11 @@
 int etch_hexadecimal(va_list argList)
 {
 	char *buffPtr;
-	int argsLength;
+	int argLength;
 
 	buffPtr = convert_ascii(va_arg(argList, unsigned int), 16);
 
-	argsLength = etch((buffPtr != NULL) ? buffPtr : "NULL");
+	argLength = etch((buffPtr != NULL) ? buffPtr : "NULL");
 
-	return (argsLength);
+	return (argLength);
 }
