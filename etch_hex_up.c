@@ -12,14 +12,14 @@ char *string_to_upper(char *);
 int etch_Hexadecimal(va_list argList)
 {
 	char *buffPtr;
-	int argsLength;
+	int argLength;
 
 	buffPtr = convert_ascii(va_arg(argList, unsigned int), 16);
 	buffPtr = string_to_upper(buffPtr);
 
-	argsLength = etch((buffPtr != NULL) ? buffPtr : "NULL");
+	argLength = etch((buffPtr != NULL) ? buffPtr : "NULL");
 
-	return (argsLength);
+	return (argLength);
 }
 
 /**
