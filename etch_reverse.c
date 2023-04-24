@@ -9,14 +9,14 @@
 int etch_reverse(va_list argList)
 {
 	int pos, argLength;
-	const char *str;
+	const char *tar;
 
-	str = va_arg(argList, const char *);
+	tar = va_arg(argList, const char *);
 
-	argLength = _strlen(str);
+	argLength = _strlen(tar);
 
 	for (pos = argLength - 1; pos >= 0; pos--)
-		_putchar(str[pos]);
+		_putchar(tar[pos]);
 
 	return (argLength);
 }
