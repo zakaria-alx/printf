@@ -5,7 +5,7 @@
  * @number: number to convert
  * @base: base to convert to
  *
- * Return: char
+ * Return: Length of the character
  *
  **/
 char *convert_ascii(long int number, int base)
