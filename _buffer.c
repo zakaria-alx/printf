@@ -8,18 +8,18 @@
  **/
 int buffer(char character)
 {
-	static char buffering[1024];
+	static char buff[1024];
 	static int i;
 
 	if (character == -1 || i == 1024)
 	{
-		write(1, buffering, i);
+		write(1, buff, i);
 		i = 0;
 	}
 
 	if (character != -1)
 	{
-		buffering[i++] = character;
+		buff[i++] = character;
 	}
 
 	return (1);
