@@ -7,11 +7,11 @@
  */
 int etch_char(va_list argList)
 {
-	int _char;
+	int charNum;
 
-	_char = va_arg(argList, int);
+	charNum = va_arg(argList, int);
 
-	_putchar(_char);
+	_putchar(charNum);
 
 	return (1);
 }
