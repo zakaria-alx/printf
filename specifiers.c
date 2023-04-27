@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * get_specifiers - function that return a
+ * list of conversion specifier methods
+ *
+ * Return: list of conversion specifier methods
+ *
+ * **/
 specifiers *get_specifiers(void)
 {
 	static specifiers specifiers[] = {

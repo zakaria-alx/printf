@@ -28,7 +28,6 @@ int print_char(va_list types, char buffer[],
  * @size: get size
  * Return: the number of characters printed
  */
-
 int print_string(va_list types, char buffer[],
 				 int flags, int width, int precision, int size)
 {
@@ -84,7 +83,6 @@ int print_string(va_list types, char buffer[],
  * @size: get size
  * Return: the number of characters printed
  */
-
 int print_percent(va_list types, char buffer[],
 				  int flags, int width, int precision, int size)
 {
