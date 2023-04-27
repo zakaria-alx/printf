@@ -2,8 +2,10 @@
 #define MAIN_H
 
 /* Dependencies */
+#include <string.h>
 #include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -23,7 +25,7 @@
 #define S_SHORT 1
 
 /**
- * struct fmt - Struct op
+ * struct specifer - Struct op
  *
  * @spec: The specifier.
  * @fn: The function associated with conversion specifier.

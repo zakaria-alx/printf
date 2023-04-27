@@ -28,6 +28,7 @@ int print_char(va_list types, char buffer[],
  * @size: get size
  * Return: the number of characters printed
  */
+
 int print_string(va_list types, char buffer[],
 				 int flags, int width, int precision, int size)
 {
@@ -39,6 +40,7 @@ int print_string(va_list types, char buffer[],
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
+
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -46,17 +48,33 @@ int print_string(va_list types, char buffer[],
 			str = "      ";
 	}
 
-	while (str[length] != '\0')
-		length++;
+	// Count the length of the string using the strlen() function
+	length = strlen(str);
 
+	// If precision is specified, limit the string length to precision
 	if (precision >= 0 && precision < length)
 		length = precision;
 
+	// Write the string to stdout in chunks of MAX_CHUNK_SIZE
+	int bytes_written = 0;
+	const int MAX_CHUNK_SIZE = 1024; // Change this to suit your needs
+	while (bytes_written < length)
+	{
+		// Calculate the number of bytes to write in this iteration
+		int chunk_size = (length - bytes_written < MAX_CHUNK_SIZE) ? length - bytes_written : MAX_CHUNK_SIZE;
+
+		// Write the chunk to stdout
+		if (write(1, &str[bytes_written], chunk_size) < 0)
+			return -1;
+
+		bytes_written += chunk_size;
+	}
+
+	// Pad the output with spaces if necessary
 	if (width > length)
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
@@ -65,12 +83,11 @@ int print_string(va_list types, char buffer[],
 		{
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
-			write(1, &str[0], length);
 			return (width);
 		}
 	}
 
-	return (write(1, str, length));
+	return bytes_written;
 }
 
 /**
@@ -83,6 +100,7 @@ int print_string(va_list types, char buffer[],
  * @size: get size
  * Return: the number of characters printed
  */
+
 int print_percent(va_list types, char buffer[],
 				  int flags, int width, int precision, int size)
 {
