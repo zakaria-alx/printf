@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * etch_char - Print character.
  * @argList: Character to print.
