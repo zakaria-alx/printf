@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-/* printf.c */
 int _printf(const char *, ...);
 
 /* handler.c */
