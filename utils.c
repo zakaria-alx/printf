@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * is_char - Checks if c is a valid character
- * @c: Value to check.
+ * is_char - Evaluates if a char is printable
+ * @c: Char to be evaluated.
  *
  * Return: 1 if c is printable, 0 otherwise
  */
@@ -15,29 +15,29 @@ int is_char(char c)
 }
 
 /**
- * hex_correct - Append ascii in hexadecimal code to buffer
- * @buffer: Array of chars.
- * @i: Appending index.
- * @ascii_code: ASCII CODE.
+ * map_hex_code - Append ascii in hexadecimal code to buffer
+ * @buffer: 1024 buffer
+ * @i: start of appending.
+ * @ascii_code: Ascii code.
  * Return: Always 3
  */
-int hex_correct(char ascii_code, char buffer[], int i)
+int map_hex_code(char ascii_code, char buffer[], int i)
 {
-	char chars[] = "0123456789ABCDEF";
+	char map_to[] = "0123456789ABCDEF";
 
 	if (ascii_code < 0)
 		ascii_code *= -1;
 
 	buffer[i++] = '\\';
 	buffer[i++] = 'x';
-	buffer[i++] = chars[ascii_code / 16];
-	buffer[i] = chars[ascii_code % 16];
+	buffer[i++] = map_to[ascii_code / 16];
+	buffer[i] = map_to[ascii_code % 16];
 	return (3);
 }
 
 /**
- * is_digit - Check if character is a digit
- * @c: value to check
+ * is_digit - Verifies if a char is a digit
+ * @c: Char to be evaluated
  *
  * Return: 1 if c is a digit, 0 otherwise
  */
@@ -50,13 +50,13 @@ int is_digit(char c)
 }
 
 /**
- * cast_number - Casts number to the proper data type
- * @num: Number to be casted
- * @size: Number indicating the type to be casted
+ * cast_size_number - Casts a number to the specified size
+ * @num: Number to be casted.
+ * @size: Number indicating the type to be casted.
  *
- * Return: Casted value
+ * Return: Casted value of num
  */
-long int cast_number(long int num, int size)
+long int cast_size_number(long int num, int size)
 {
 	if (size == S_LONG)
 		return (num);
@@ -67,13 +67,13 @@ long int cast_number(long int num, int size)
 }
 
 /**
- * cast_unsigned_int - Casts a number to the proper data type
+ * cast_size_unsigned_number - Casts a number to the specified size
  * @num: Number to be casted
  * @size: Number indicating the type to be casted
  *
- * Return: Casted value
+ * Return: Casted value of num
  */
-long int cast_unsigned_int(unsigned long int num, int size)
+long int cast_size_unsigned_number(unsigned long int num, int size)
 {
 	if (size == S_LONG)
 		return (num);
