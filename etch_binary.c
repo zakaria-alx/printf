@@ -2,7 +2,7 @@
 
 /**
  * etch_binary - function that prints unsigned int in binary
- * @args: List of arguments
+ * @args: List of arguments to be printed.
  * @buffer: local buffer of 1024 chars
  * @flags:  flag characters for non-custom conversion specifiers
  * @width: width for non-custom conversion specifiers.

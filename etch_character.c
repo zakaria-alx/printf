@@ -56,6 +56,7 @@ int output_char(char c, char buffer[],
 int etch_char(va_list args, char buffer[],
 			  int flags, int width, int precision, int size)
 {
-	return (output_char(va_arg(args, int), buffer,
+	char c = va_arg(args, int);
+	return (output_char(c, buffer,
 						flags, width, precision, size));
 }

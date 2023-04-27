@@ -93,7 +93,7 @@ int output_number(int is_neg, int idx, char buffer[],
 
 /**
  * etch_integer - Print int
- * @args: List of arguments
+ * @args: List of arguments to be printed.
  * @buffer: local buffer of 1024 chars
  * @flags:  flag characters for non-custom conversion specifiers
  * @width: width for non-custom conversion specifiers.

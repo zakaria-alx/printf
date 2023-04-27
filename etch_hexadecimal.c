@@ -2,7 +2,7 @@
 
 /**
  * etch_hex_low - Prints an unsigned number in hexadecimal notation
- * @args: List of arguments
+ * @args: List of arguments to be printed.
  * @buffer: local buffer of 1024 chars
  * @flags:  flag characters for non-custom conversion specifiers
  * @width: width for non-custom conversion specifiers
@@ -19,7 +19,7 @@ int etch_hex_low(va_list args, char buffer[],
 
 /**
  * etch_hex_upper - Prints an unsigned number in upper hexadecimal notation
- * @args: List of arguments
+ * @args: List of arguments to be printed.
  * @buffer: local buffer of 1024 chars
  * @flags:  flag characters for non-custom conversion specifiers
  * @width: width for non-custom conversion specifiers
@@ -36,7 +36,7 @@ int etch_hex_upper(va_list args, char buffer[],
 
 /**
  * output_hex - Prints a hexadecimal number in lower or upper
- * @args: List of arguments
+ * @args: List of arguments to be printed.
  * @map_to: Array of values to map the number to
  * @buffer: local buffer of 1024 chars
  * @flags:  flag characters for non-custom conversion specifiers

@@ -46,10 +46,10 @@ int get_flags(const char *format, int *i)
  * @format: is a character string.
  * The format string is composed of zero or more directives
  * @i: List of arguments to be printed.
- * @list: list of arguments.
+ * @args: List of arguments to be printed..
  * Return: Precision.
  */
-int get_precision(const char *format, int *i, va_list list)
+int get_precision(const char *format, int *i, va_list args)
 {
 	int idx = *i + 1;
 	int precision = -1;
@@ -71,7 +71,7 @@ int get_precision(const char *format, int *i, va_list list)
 		else if (format[idx] == '*')
 		{
 			idx++;
-			precision = va_arg(list, int);
+			precision = va_arg(args, int);
 			break;
 		}
 		else
@@ -121,11 +121,11 @@ int get_size(const char *format, int *i)
  * @format: is a character string.
  * The format string is composed of zero or more directives.
  * @i: List of arguments to be printed.
- * @list: list of arguments.
+ * @args: List of arguments to be printed..
  *
  * Return: width.
  */
-int get_width(const char *format, int *i, va_list list)
+int get_width(const char *format, int *i, va_list args)
 {
 	int idx;
 	int width = 0;
@@ -140,7 +140,7 @@ int get_width(const char *format, int *i, va_list list)
 		else if (format[idx] == '*')
 		{
 			idx++;
-			width = va_arg(list, int);
+			width = va_arg(args, int);
 			break;
 		}
 		else
