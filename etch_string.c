@@ -1,98 +1,57 @@
 #include "main.h"
 
 /**
- * etch_string - Print string
- * @argList: String to print.
- *
- * Return: Length of the string.
+ * etch_string - Prints a string
+ * @args: List a of arguments
+ * @buffer: local buffer of 1024 chars
+ * @flags:  flag characters for non-custom conversion specifiers
+ * @width: width for non-custom conversion specifiers.
+ * @precision: precision for non-custom conversion specifiers.
+ * @size: Computed size specifier
+ * Return: the number of characters printed
  */
 
-int etch_string(va_list argList)
+int etch_string(va_list args, char buffer[],
+				int flags, int width, int precision, int size)
 {
-	char *argPtr;
-	int argLength;
+	int length = 0, i;
+	char *str = va_arg(args, char *);
 
-	argPtr = va_arg(argList, char *);
-	argLength = etch((argPtr != NULL) ? argPtr : "(null)");
-
-	return (argLength);
-}
-
-/**
- * _puthex - Prints a given number in hexadecimal format (uppercase)
- * @num: The number to be printed
- * Description: This function takes an integer as
- * input and prints it in hexadecimal
- * format using uppercase letters.
- * Return: 1 if the number was printed successfully,
- * 0 if no number was provided
-**/
-int _puthex(int num)
-{
-	int ptr_score = 0;
-	char buffer[32];
-	int i, count = 0;
-	char hex_digits[] = "0123456789ABCDEF";
-
-	if (num == 0)
-	{
-		_putchar('0');
-		ptr_score++;
-		return (1);
-	}
-
-	i = 0;
-	while (num > 0)
-	{
-		buffer[i] = hex_digits[num % 16];
-		num /= 16;
-		i++;
-	}
-	i--;
-	while (i >= 0)
-	{
-		_putchar(buffer[i]);
-		i--;
-		ptr_score++;
-		count++;
-	}
-	return (ptr_score);
-}
-
-/**
- * etch_String - Print incoming string
- * @argList: String to print
- * Description: Redirecting incoming string towards buffer
- * Return: The length of the printed string
-**/
-int etch_String(va_list argList)
-{
-	int idx;
-	int ptr_score = 0;
-	char *str = va_arg(argList, char *);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
-		str = "(null)";
-
-	for (idx = 0; str[idx] != '\0'; idx++)
 	{
-		if ((str[idx] > 0 && str[idx] < 32) || str[idx] >= 127)
+		str = "(null)";
+		if (precision >= 6)
+			str = "      ";
+	}
+
+	while (str[length] != '\0')
+		length++;
+
+	if (precision >= 0 && precision < length)
+		length = precision;
+
+	if (width > length)
+	{
+		if (flags & F_MINUS)
 		{
-			_putchar('\\');
-			_putchar('x');
-			ptr_score += 2;
-			if (str[idx] < 16)
-			{
-				_putchar('0');
-				ptr_score += 1;
-			}
-			ptr_score += _puthex(str[idx]);
+			write(1, &str[0], length);
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			return (width);
 		}
 		else
 		{
-			_putchar(str[idx]);
-			ptr_score += 1;
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			write(1, &str[0], length);
+			return (width);
 		}
 	}
-	return (ptr_score);
+	return (write(1, str, length));
 }
