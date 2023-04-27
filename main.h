@@ -1,89 +1,76 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* Dependencies */
-#include <limits.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
-
-#define UNUSED(x) (void)(x)
-#define BUFF_SIZE 1024
-
-/* FLAGS */
-#define F_MINUS 1
-#define F_PLUS 2
-#define F_ZERO 4
-#define F_HASH 8
-#define F_SPACE 16
-
-/* SIZES */
-#define S_LONG 2
-#define S_SHORT 1
 
 /**
- * struct fmt - Struct op
- *
- * @spec: The specifier.
- * @fn: The function associated with conversion specifier.
+ * struct flags - struct containing flags to "turn on"
+ * when a flag specifier is passed to _printf()
+ * @plus: flag for the '+' character
+ * @space: flag for the ' ' character
+ * @hash: flag for the '#' character
  */
-typedef struct _specifiers
+typedef struct flags
 {
-	char spec;
-	int (*fn)(va_list, char[], int, int, int, int);
-} specifiers;
+	int plus;
+	int space;
+	int hash;
+} flags_t;
 
-specifiers *get_specifiers(void);
+/**
+ * struct printHandler - struct to choose the right function depending
+ * on the format specifier passed to _printf()
+ * @c: format specifier
+ * @f: pointer to the correct printing function
+ */
+typedef struct printHandler
+{
+	char c;
+	int (*f)(va_list ap, flags_t *f);
+} ph;
+
+/* print_nums */
+int print_int(va_list l, flags_t *f);
+void print_number(int n);
+int print_unsigned(va_list l, flags_t *f);
+int count_digit(int i);
+
+/* print_bases */
+int print_hex(va_list l, flags_t *f);
+int print_hex_big(va_list l, flags_t *f);
+int print_binary(va_list l, flags_t *f);
+int print_octal(va_list l, flags_t *f);
+
+/* converter */
+char *convert(unsigned long int num, int base, int lowercase);
+
+/* _printf */
 int _printf(const char *format, ...);
-int handle_specifiers(const char *, int *i, va_list, char[], int, int, int, int);
 
-/* Funtions to print chars and strings */
-int print_char(va_list, char[], int, int, int, int);
-int print_string(va_list, char[], int, int, int, int);
-int print_percent(va_list, char[], int, int, int, int);
+/* get_print */
+int (*get_print(char s))(va_list, flags_t *);
 
-/* Functions to print numbers */
-int print_int(va_list, char[], int, int, int, int);
-int print_binary(va_list, char[], int, int, int, int);
-int print_unsigned(va_list, char[], int, int, int, int);
-int print_octal(va_list, char[], int, int, int, int);
-int print_hex_lower(va_list, char[], int, int, int, int);
-int print_hex_upper(va_list, char[], int, int, int, int);
+/* get_flag */
+int get_flag(char s, flags_t *f);
 
-int print_hex(va_list, char map_to[], char[], int, char flag_ch, int, int, int);
+/* print_alpha */
+int print_string(va_list l, flags_t *f);
+int print_char(va_list l, flags_t *f);
 
-/* Function to print non printable characters */
-int print_non_printable(va_list, char[], int, int, int, int);
+/* write_funcs */
+int _putchar(char c);
+int _puts(char *str);
 
-/* Funcion to print memory address */
-int print_pointer(va_list, char[], int, int, int, int);
+/* print_custom */
+int print_rot13(va_list l, flags_t *f);
+int print_rev(va_list l, flags_t *f);
+int print_bigS(va_list l, flags_t *f);
 
-/* Funciotns to handle other specifiers */
-int get_flags(const char *, int *i);
-int get_width(const char *, int *i, va_list);
-int get_precision(const char *, int *i, va_list);
-int get_size(const char *, int *i);
+/* print_address */
+int print_address(va_list l, flags_t *f);
 
-/*Function to print string in reverse*/
-int print_reverse(va_list, char[], int, int, int, int);
-
-/*Function to print a string in rot 13*/
-int print_rot13(va_list, char[], int, int, int, int);
-
-/* width handler */
-int handle_spec_char(char c, char[],
-					 int, int, int, int);
-int write_number(int is_positive, int ind, char[], int, int, int, int);
-int write_num(int ind, char bff[], int, int, int, int length, char padd, char extra_c);
-int write_pointer(char[], int ind, int length, int, int, char padd, char extra_c, int padd_start);
-int write_unsigned_int(int is_negative, int ind, char[], int, int, int, int);
-
-int is_char(char);
-int map_hex_code(char, char[], int);
-int is_digit(char);
-
-long int cast_size_number(long int num, int);
-long int cast_size_unsigned_number(unsigned long int num, int);
+/* print_percent */
+int print_percent(va_list l, flags_t *f);
 
 #endif
