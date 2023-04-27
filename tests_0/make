@@ -1,6 +1,5 @@
 #!/bin/bash
 
 rm ./a.out
-gcc -Wall -Wextra -Werror -pedantic -std=c99 -Wno-format main_$1.c ../*.c
-./a.out
-
+ls | grep ".c" | xargs -I "{}" \
+    sh -c "gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format "{}" ../*.c;./a.out"
