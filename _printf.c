@@ -13,20 +13,21 @@ int _printf(const char *format, ...)
 	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
-	char buffer[BUFF_SIZE];
+	static char buffer[BUFF_SIZE];
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(list, format);
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
+			write(1, &format[i], 1);
+			/* _putchar(format[i]); */
 			printed_chars++;
-			_putchar(-1);
+			/* _putchar(-1); */
 		}
 		else
 		{
