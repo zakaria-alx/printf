@@ -9,19 +9,19 @@
  **/
 int buffer(char character)
 {
-    static char buff[BUFF_SIZE];
-    static int idx;
+	static char buff[BUFF_SIZE];
+	static int idx;
 
-    if (character == -1 || idx == BUFF_SIZE)
-    {
-        write(1, buff, idx);
-        idx = 0;
-    }
+	if (character == -1 || idx == BUFF_SIZE)
+	{
+		write(1, buff, idx);
+		idx = 0;
+	}
 
-    if (character != -1)
-    {
-        buff[idx++] = character;
-    }
+	if (character != -1)
+	{
+		buff[idx++] = character;
+	}
 
-    return (1);
+	return (1);
 }

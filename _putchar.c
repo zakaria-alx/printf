@@ -9,5 +9,5 @@
  */
 int _putchar(char character)
 {
-    return (buffer(character));
+	return (buffer(character));
 }
